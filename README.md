@@ -135,7 +135,7 @@ Les résultats sont sauvegardés en format Parquet dans :
 
 ## 📽️ Présentation du projet
 
-[👉 Accéder à la présentation de synthèse (OneDrive)](https://1drv.ms/p/c/08F813C23A12D604/EXtK3sqeYFVMphQhEuaSfAYBH4BfFI8xSb7vYOU6vY40AQ?e=IqaUex)
+[👉 Accéder à la présentation de synthèse (OneDrive)](https://1drv.ms/b/c/08F813C23A12D604/IQAqg7fttbTVQ7KV5lIOUw7zAQMSkzEs6HYHXHpQX5IhHLM?e=gSUEVL)
 
 Ce document utilisé en soutenance aborde :
 - L'architecture choisie
@@ -149,11 +149,11 @@ Ce document utilisé en soutenance aborde :
 
 Un utilisateur IAM nommé `s3-readonly` a été configuré avec les permissions minimales pour accéder aux buckets S3 `ociae-p11` et de logs EMR.
 
-👤 **Accès AWS Console – Projet P11**
+👤 **Accès AWS Console – Projet P11 (me contacter pour une démonstration)** 
 
 - **URL de connexion :** https://908027391515.signin.aws.amazon.com/console
-- **Nom d’utilisateur :** s3-readonly
-- **Mot de passe temporaire :** OC-aie#11
+- **Nom d’utilisateur :** ***********
+- **Mot de passe temporaire :** **********
 
 ➡️ Vous devrez définir votre propre mot de passe lors de la première connexion.
 
