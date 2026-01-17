@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  spark-notebook:
+    build: .
+    container_name: spark-notebook
+    ports:
+      - "8888:8888"     # Jupyter Lab
+      - "4040:4040"     # Spark Web UI
+      - "18080:18080"   # Spark History Server
+    volumes:
+      - .:/workspace
+      - ./spark-events:/spark-events
+    environment:
+      SPARK_HISTORY_OPTS: >
+        -Dspark.history.fs.logDirectory=file:/spark-events
+        -Dspark.history.fs.cleaner.enabled=true
+        -Dspark.history.fs.update.interval=5s
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION}
+    command: >
+      bash -c "
+        /opt/spark/sbin/start-history-server.sh &
+        jupyter lab --ip=0.0.0.0 --port=8888 --allow-root --no-browser
+      "

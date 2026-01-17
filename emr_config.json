@@ -1,0 +1,9 @@
+[
+  {
+    "Classification": "jupyter-s3-conf",
+    "Properties": {
+      "s3.persistence.bucket": "s3://ociae-p11",
+      "s3.persistence.enabled": "true"
+    }
+  }
+]
