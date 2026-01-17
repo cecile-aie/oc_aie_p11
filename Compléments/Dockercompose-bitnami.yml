@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  spark-notebook:
+    build: .
+    container_name: spark-notebook
+    ports:
+      - "8888:8888"     # JupyterLab
+      - "4040:4040"     # Spark UI
+      - "18080:18080"   # Spark History Server
+    volumes:
+      - .:/workspace
+      - ./spark-events:/spark-events  # Volume local pour logs Spark
+    environment:
+      - SPARK_HISTORY_OPTS=-Dspark.history.fs.logDirectory=file:/spark-events -Dspark.history.fs.cleaner.enabled=true
+    command: >
+      bash -c "/opt/bitnami/spark/bin/spark-class org.apache.spark.deploy.history.HistoryServer &
+               jupyter lab --ip=0.0.0.0 --port=8888 --allow-root --no-browser"

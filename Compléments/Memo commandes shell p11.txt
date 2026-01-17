@@ -1,0 +1,29 @@
+Interface Jupyterhub
+ssh -i p11.pem -L 8000:localhost:9443 hadoop@ec2-51-44-178-144.eu-west-3.compute.amazonaws.com
+suivi en parallèle
+ssh -i p11.pem -L 18080:localhost:18080 hadoop@ec2-15-237-255-207.eu-west-3.compute.amazonaws.com
+
+
+
+Mode spark-submit client
+logs dans Gitlab
+accès au master EMR
+ssh -i p11.pem hadoop@ec2-15-237-210-214.eu-west-3.compute.amazonaws.com
+tunneling SSH (history server)
+ssh -i p11.pem -L 18080:localhost:18080 hadoop@ec2-15-237-210-221.eu-west-3.compute.amazonaws.com
+
+
+
+Mode spark-submit cluster
+copier la clé dans le master de l'EMR avant de lancer
+cat gitlab_ci_key.pub | ssh -i p11.pem hadoop@ec2-15-236-247-91.eu-west-3.compute.amazonaws.com "mkdir -p ~/.ssh && chmod 700 ~/.ssh && cat >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys"
+
+dans le log
+tracking URL: http://ip-172-31-1-13.eu-west-3.compute.internal:20888/proxy/application_1753345829020_0001/
+c'est l'IP privée du primaire
+il faut crée le tunnel ssh sur l'ip publique correspondante en associant le port 20888 à celui du localhost client
+ssh -i p11.pem -N -L 20888:ip-172-31-0-241.eu-west-3.compute.internal:20888 hadoop@ec2-13-38-71-69.eu-west-3.compute.amazonaws.com
+puis dans le navigateur
+http://localhost:20888/proxy/application_1753297243095_0001/
+
+

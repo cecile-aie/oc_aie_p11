@@ -1,0 +1,36 @@
+FROM bitnami/spark:3.5.0
+
+USER root
+
+# Créer le dossier pour Spark event logs
+RUN mkdir -p /spark-events
+
+# Installer Python et les bibliothèques nécessaires
+RUN apt-get update && apt-get install -y \
+    python3-pip \
+    && pip3 install --no-cache-dir \
+    jupyterlab \
+    pandas \
+    numpy \
+    pillow \
+    tensorflow \
+    pyarrow \
+    scikit-learn \
+    matplotlib \
+    seaborn
+
+# Variables d’environnement Spark
+ENV SPARK_HOME=/opt/bitnami/spark
+ENV PYSPARK_PYTHON=python3
+ENV PYSPARK_DRIVER_PYTHON=python3
+
+WORKDIR /workspace
+VOLUME /workspace
+
+EXPOSE 8888
+EXPOSE 4040
+EXPOSE 18080
+
+# Lancer JupyterLab par défaut (si hors docker-compose)
+# CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--allow-root", "--no-browser"]
+
